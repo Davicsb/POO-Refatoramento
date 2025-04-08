@@ -1,5 +1,5 @@
 import time
-from Controler.factory import FitnessComponentFactory
+from Controller.factory import FitnessComponentFactory
 
 class FitnessApp:
     def __init__(self, factory=None):
@@ -10,8 +10,6 @@ class FitnessApp:
         self.workout_manager = self.factory.create_workout_manager()
         self.activity_tracker = self.factory.create_activity_tracker()
         self.nutrition_tracker = self.factory.create_nutrition_tracker()
-        self.goal_manager = self.factory.create_goal_manager()
-        self.device_sync = self.factory.create_device_sync(self.activity_tracker.progress)
         self.feedback_manager = self.factory.create_feedback_manager()
         self.tutorial_manager = self.factory.create_tutorial_manager()
         self.forum_manager = self.factory.create_forum_manager()
@@ -41,18 +39,19 @@ class FitnessApp:
             "1": self.workout_manager.create_workout,
             "2": self.activity_tracker.track,
             "3": self.nutrition_tracker.track,
-            "4": self.goal_manager.set_goals,
-            "5": self.device_sync.sync_device,
+            "4": self.activity_tracker.set_goals,
+            "5": self.activity_tracker.device_sync,
             "6": self.share_progress,
             "7": self.tutorial_manager.access_tutorials,
             "8": self.get_recommendations,
             "9": self.feedback_manager.give_feedback,
             "10": self.forum_manager.access_forum,
-            "11": self.goal_manager.check_progress,
+            "11": self.see_data,
             "12": exit
         }
         while True:
             option = self.display_menu()
+            print()
             if option in functions:
                 functions[option]()
             else:
@@ -75,3 +74,8 @@ class FitnessApp:
             print("- Caminhe mais para atingir sua meta!")
         if self.activity_tracker.progress["Calorias"] < self.goal_manager.goals["Calorias"] * 0.5:
             print("- Considere um treino aeróbico para queimar mais calorias.")
+            
+    def see_data(self):
+        self.feedback_manager.see_feedback()
+        self.workout_manager.see_workout()
+        self.activity_tracker.check_progress()

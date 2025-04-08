@@ -3,7 +3,7 @@ import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from Controler.factory import FitnessComponentFactory
+from Controller.factory import FitnessComponentFactory
 from View.view import FitnessApp
 
 if __name__ == "__main__":
