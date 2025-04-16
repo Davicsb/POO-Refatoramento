@@ -22,3 +22,6 @@ class WorkoutManager:
                 print(f"Treino: {workout['Nome']}, Descrição: {workout['Descrição']}.\n")
         else:
             print("Nenhum treino encontrado!")
+            
+    def execute(self):
+        self.create_workout()

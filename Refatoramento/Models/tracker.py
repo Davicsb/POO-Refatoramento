@@ -58,6 +58,9 @@ class ActivityTracker(Tracker):
             print("Metas definidas com sucesso!")
         except ValueError:
             print("Erro: Insira valores numéricos válidos.")
+            
+    def execute(self):
+        self.track()
     
     def check_progress(self):
         print("\nProgresso Atual:")
@@ -92,3 +95,6 @@ class NutritionTracker(Tracker):
 
     def get_progress(self):
         return self._nutrition
+    
+    def execute(self):
+        self.track()

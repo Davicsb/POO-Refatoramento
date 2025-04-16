@@ -23,3 +23,6 @@ class FeedbackManager:
                 print(f"Treino: {feedback['Treino']}, Nota: {feedback['Nota']}, Comentário: {feedback['Comentário']}.\n")
         else:
             print("Nenhum feedback encontrado!\n")
+        
+    def execute(self):
+        self.give_feedback()

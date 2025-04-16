@@ -1,5 +1,6 @@
 import time
 from Controller.factory import FitnessComponentFactory
+from Models.adapter import GoalSetter, DeviceSyncer, ShareProgressAdapter, RecommendationsAdapter, DataViewer, ExitHandler
 
 class FitnessApp:
     def __init__(self, factory=None):
@@ -36,24 +37,24 @@ class FitnessApp:
 
     def run(self):
         functions = {
-            "1": self.workout_manager.create_workout,
-            "2": self.activity_tracker.track,
-            "3": self.nutrition_tracker.track,
-            "4": self.activity_tracker.set_goals,
-            "5": self.activity_tracker.device_sync,
-            "6": self.share_progress,
-            "7": self.tutorial_manager.access_tutorials,
-            "8": self.get_recommendations,
-            "9": self.feedback_manager.give_feedback,
-            "10": self.forum_manager.access_forum,
-            "11": self.see_data,
-            "12": exit
+            "1": self.workout_manager,
+            "2": self.activity_tracker,
+            "3": self.nutrition_tracker,
+            "4": GoalSetter(self.activity_tracker),
+            "5": DeviceSyncer(self.activity_tracker),
+            "6": ShareProgressAdapter(self),
+            "7": self.tutorial_manager,
+            "8": RecommendationsAdapter(self),
+            "9": self.feedback_manager,
+            "10": self.forum_manager,
+            "11": DataViewer(self),
+            "12": ExitHandler()
         }
         while True:
             option = self.display_menu()
             print()
             if option in functions:
-                functions[option]()
+                functions[option].execute()
             else:
                 print("Opção inválida. Tente novamente.")
             time.sleep(1)

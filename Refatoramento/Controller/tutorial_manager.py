@@ -10,3 +10,6 @@ class TutorialManager:
         print("\nTutoriais e Guias em Vídeo:")
         for video in self._videos:
             print(video)
+            
+    def execute(self):
+        self.access_tutorials()
