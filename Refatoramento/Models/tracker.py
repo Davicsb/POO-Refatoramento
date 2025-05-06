@@ -48,14 +48,14 @@ class ActivityTracker(Tracker):
         calories = random.uniform(20, 100)
         self._progress["Passos"] += steps
         self._progress["Calorias"] += calories
-        print(f"Dispositivo sincronizado! +{steps} passos e +{calories:.2f} calorias adicionados.")
+        print(f"+{steps} passos e +{calories:.2f} calorias adicionados.")
     
     def set_goals(self):
         try:
             self._goals["Passos"] = int(input("Meta diária de passos: "))
             self._goals["Calorias"] = float(input("Meta diária de calorias queimadas: "))
             self._goals["Duração"] = int(input("Meta diária de duração dos treinos (min): "))
-            print("Metas definidas com sucesso!")
+            
         except ValueError:
             print("Erro: Insira valores numéricos válidos.")
             

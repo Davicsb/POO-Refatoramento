@@ -7,6 +7,5 @@ from Controller.factory import FitnessComponentFactory
 from View.view import FitnessApp
 
 if __name__ == "__main__":
-    factory = FitnessComponentFactory()
-    app = FitnessApp(factory)
+    app = FitnessApp()
     app.run()
