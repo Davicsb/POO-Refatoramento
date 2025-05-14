@@ -25,10 +25,14 @@ class Factory:
 
     def get_recommendations(self):
         print("\nRecomendações Personalizadas:")
-        if self.activity_tracker.progress["Passos"] < self.goal_manager.goals["Passos"] * 0.5:
+        if self.activity_tracker.progress["Passos"] < self.activity_tracker.goals["Passos"] * 0.5:
             print("- Caminhe mais para atingir sua meta!")
-        if self.activity_tracker.progress["Calorias"] < self.goal_manager.goals["Calorias"] * 0.5:
+        else:
+            print("Você está indo bem, atingiu sua meta de passos, continue assim!")
+        if self.activity_tracker.progress["Calorias"] < self.activity_tracker.goals["Calorias"] * 0.5:
             print("- Considere um treino aeróbico para queimar mais calorias.")
+        else:
+            print("Você está indo bem, atingiu sua meta de calorias, continue assim!")
             
     def see_data(self):
         self.feedback_manager.see_feedback()

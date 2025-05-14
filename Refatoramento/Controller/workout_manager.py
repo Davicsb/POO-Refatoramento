@@ -6,6 +6,15 @@ class WorkoutManager:
     def workouts(self):
         return self._workouts
 
+    def workout(self):
+        option = input("1 - Criar treino\n2 - Ver treinos.\n")
+        if option == '1':
+            self.create_workout()
+        elif option == '2':
+            self.see_workout()
+        else:
+            print("Opção inválida!")
+        
     def create_workout(self):
         name = input("Nome do treino: ").strip()
         description = input("Descrição do treino: ").strip()
@@ -24,4 +33,4 @@ class WorkoutManager:
             print("Nenhum treino encontrado!")
             
     def execute(self):
-        self.create_workout()
+        self.workout()

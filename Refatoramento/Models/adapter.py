@@ -1,4 +1,3 @@
-# Em algum arquivo base, como interfaces.py
 from abc import ABC, abstractmethod
 
 class FitnessComponent(ABC):
@@ -21,6 +20,9 @@ class FitnessComponent(ABC):
 class ShareProgressAdapter(FitnessComponent):
     def __init__(self, app):
         self.app = app
+        
+    def pre_execute(self):
+        print("Escolha uma opção:")
 
     def run(self):
         self.app.share_progress()
